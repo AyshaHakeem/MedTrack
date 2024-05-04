@@ -3,7 +3,7 @@
 import { CareCircleRow, columns } from "@/types/CareCircleTypes";
 import DataTable from "@/components/DataTable";
 import { demoCarecircleList } from "@/services/api/carecircle";
-import AddCareCircle from "./components/add-care-circle-dialog";
+import AddCareCircle from "./_components/add-care-circle-dialog";
 import { useRouter } from "next/navigation";
 import PageTitle from "@/components/ui/PageTitle";
 
