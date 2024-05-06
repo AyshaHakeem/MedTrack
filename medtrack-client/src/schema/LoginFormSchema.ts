@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const RegisterFormSchema = z.object({
+const LoginFormSchema = z.object({
     email: z.string().email({
         message: "Please enter a valid email address"
     }),
@@ -8,3 +8,5 @@ export const RegisterFormSchema = z.object({
         message: "Password must be at least 6 characters long"
     })
 })
+
+export default LoginFormSchema

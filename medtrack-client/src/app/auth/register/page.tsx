@@ -7,12 +7,10 @@ const register = () => {
         <CardWrapper 
         title = "Register Now"
         label = "sign-up as a care giver"
-        backButtonHref="/login"
+        backButtonHref="/auth/login"
         backButtonLabel="Login as a user"
         children={<RegisterForm />}
         />
-        //     {/* <RegisterForm /> */}
-        // // </CardWrapper>
     )
 }
 

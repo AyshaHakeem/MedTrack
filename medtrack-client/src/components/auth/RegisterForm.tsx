@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form"
 import { useFormStatus } from "react-dom";
-import { RegisterFormSchema } from "@/schema/RegisterFormSchema";
+import { useRouter } from "next/navigation";
+import RegisterFormSchema from "@/schema/RegisterFormSchema";
 import { z } from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
@@ -17,12 +18,15 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-
+import handleRegistration from "@/utils/auth/handleRegistrationForm";
+import DisplayText from "@/components/ui/DisplayText"
 
 export const RegisterForm = () => {
 
     const [loading, setLoading] = useState(false)
     const {pending} = useFormStatus()
+    const router = useRouter()
+    const [errorMessage, setErrorMessage] = useState('')
 
     const form = useForm({
         resolver: zodResolver(RegisterFormSchema),
@@ -35,12 +39,23 @@ export const RegisterForm = () => {
     });
 
     const onSubmit = (data: z.infer<typeof RegisterFormSchema>) => {
-        setLoading(true);
-        console.log(data); 
+        return handleSubmission(data, form, setLoading, setErrorMessage, router)
     }
+
+    const handleSubmission = async (
+        data: z.infer<typeof RegisterFormSchema>,
+        form: any,
+        setLoading: (value: boolean) => void,
+        setErrorMessage: (message: string) => void,
+        router: any
+    ) => {
+        await handleRegistration(data, form, setLoading, setErrorMessage, router)
+    }
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <DisplayText content={errorMessage} />
             <div className="space-y-4">
                 <FormField
                 control={form.control}

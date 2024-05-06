@@ -7,7 +7,7 @@ const register = () => {
         <CardWrapper 
         title = "Login to MedTrack"
         label = "Care giver login"
-        backButtonHref="/login"
+        backButtonHref="/auth/login"
         backButtonLabel="Sign Up as a user"
         children={<LoginForm />}
         />
