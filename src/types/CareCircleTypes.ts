@@ -23,3 +23,13 @@ export const columns: ColumnDef<CareCircleRow>[] = [
     header: "Status",
   },
 ];
+
+export interface carecircleListDTO {
+  ids: string[];
+  items: {
+    [careCircleId: string]: {
+      id: string;
+      name: string;
+    };
+  };
+}
