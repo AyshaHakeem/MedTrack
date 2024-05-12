@@ -1,4 +1,4 @@
-import axiosInstance from "../axiosInsance";
+import axiosInstance from "../axios/axiosInsance";
 import { iAddCareCircleForm } from "@/types/CareCircleTypes";
 import { iAddMedicineForm } from "@/types/MedLogTypes";
 import { iMedLogs } from "@/types/MedLogTypes";
