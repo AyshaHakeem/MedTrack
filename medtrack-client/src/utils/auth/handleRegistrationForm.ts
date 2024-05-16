@@ -36,7 +36,6 @@ const handleRegistration = async (
         } 
     } catch (error: any) {
         setLoading(false);
-        console.log(error.error)
         console.error(error);
         setErrorMessage(error.response?.data?.error || "An error occurred, please try again");
 

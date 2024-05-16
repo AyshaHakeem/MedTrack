@@ -13,3 +13,14 @@ export interface iLoginFormData {
 export interface iAuthToken {
   access_token: string
 }
+
+export interface iUser{
+  id: number,
+  name: string,
+  email: string
+}
+
+export interface iSession{
+  token: string,
+  user: iUser
+}

@@ -10,8 +10,8 @@ const handleLogin = async (
     try {
         const response = await loginSubmission(data)
         if (response.isSuccess){
-            localStorage.setItem('medtrack_token', `Bearer ${response.token}`)
-            router.push('/dashboard')
+            localStorage.setItem('medtrack_token', response.token)
+            router.push('/carecircle')
         }
     } catch (error: any) {
         console.error(error)
