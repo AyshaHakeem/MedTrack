@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from server import jwt
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity
 from datetime import datetime, timedelta, timezone
 import json
 
@@ -8,12 +8,6 @@ def generate_auth_token(id):
     access_token = create_access_token(identity=id)
     response = access_token
     return response
-
-# def user_logout():
-#     response = jsonify({"msg": "logout successful"})
-#     # unset_jwt_cookies(response)
-#     print(f"\n\n logout successful \n\n")
-#     return response
 
 def refresh_expiring_jwts(response):
     try:
