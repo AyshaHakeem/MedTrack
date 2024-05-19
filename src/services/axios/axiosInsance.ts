@@ -1,5 +1,5 @@
+import { setTokens } from "@/utils/auth/helper";
 import axios from "axios";
-// import { addCareCircle } from "../api/carecircle";
 
 const axiosInstance = axios.create({
   baseURL: process.env.MEDTRACK_SERVER_BASE_URL,
@@ -9,16 +9,9 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-const refreshToken = async () => {
-  try {
-    const resp = await customFetch.get("auth/refresh");
-    console.log("refresh token", resp.data);
-    return resp.data;
-  } catch (e) {
-    console.log("Error", e);
-  }
-};
-
+/*
+  authenticate each request
+*/
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("medtrack_token");
@@ -28,6 +21,38 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+/*
+  fetch the new JWT authToken if the JWT refreshToken exists
+*/
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = localStorage.getItem("medtrack_refresh_token");
+
+        const response = await axios.post("/auth/renew-access-token", {
+          refreshToken,
+        });
+
+        if (response.isSuccess) {
+          localStorage.setItem("medtrack_token", response.data.accessToken);
+        }
+
+        originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        return axios(originalRequest);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     return Promise.reject(error);
   }
 );
