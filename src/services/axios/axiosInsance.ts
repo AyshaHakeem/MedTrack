@@ -2,11 +2,12 @@ import { setTokens } from "@/utils/auth/helper";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.MEDTRACK_SERVER_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_MEDTRACK_SERVER_BASE_URL,
+  // baseURL: "http://localhost:3086/api",
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 /*
@@ -42,9 +43,9 @@ axiosInstance.interceptors.response.use(
           refreshToken,
         });
 
-        if (response.isSuccess) {
-          localStorage.setItem("medtrack_token", response.data.accessToken);
-        }
+        // if (response.isSuccess) {
+        localStorage.setItem("medtrack_token", response.data.accessToken);
+        // }
 
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
         return axios(originalRequest);

@@ -27,7 +27,7 @@ const addMedicine = async (
   }
 };
 
-const inviteCaregiver = async(data: )
+// const inviteCaregiver = async(data: )
 
 // demo data
 const demoCarecircleList = [
