@@ -1,16 +1,22 @@
-"use client"
+import { CareCircleRow, columns } from "@/types/CareCircleTypes" 
+import DataTable from "@/components/DataTable"
+import { demoCarecircleList } from "@/services/api/carecircle"
+import AddCareCircle from "../../components/AddCareCircleDialog"
 
-import AddCareCircle from "@/components/carecircle/AddCareCircleDialog"
-
-import { useSession } from "next-auth/react"
-
-
-const carecircle = () => {
-  const data = useSession()
-  console.log('In careCC',data)
-    return (
-      <AddCareCircle />
-    )
+async function getData(): Promise<CareCircleRow[]> {
+  // Fetch data from API
+  return [
+    // demoCarecircleList
+  ]
 }
 
-export default carecircle
+export default async function DemoPage() {
+  const data = demoCarecircleList
+
+  return (
+    <div className="container mx-auto py-10">
+      <AddCareCircle />
+      <DataTable columns={columns} data={data} />
+    </div>
+  )
+}
