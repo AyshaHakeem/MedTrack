@@ -1,6 +1,6 @@
 import React from "react"
-import CardWrapper from "@/components/auth/CardWrapper"
-import { LoginForm } from "@/components/auth/LoginForm"
+import CardWrapper from "../../../components/CardWrapper"
+import { LoginForm } from "./login-form" 
 
 const register = () => {
     return (

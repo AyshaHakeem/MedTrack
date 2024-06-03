@@ -1,7 +1,7 @@
 import { CareCircleRow, columns } from "@/types/CareCircleTypes" 
 import DataTable from "@/components/DataTable"
 import { demoCarecircleList } from "@/services/api/carecircle"
-import AddCareCircle from "../../components/AddCareCircleDialog"
+import AddCareCircle from "./components/add-care-circle-dialog"
 
 async function getData(): Promise<CareCircleRow[]> {
   // Fetch data from API

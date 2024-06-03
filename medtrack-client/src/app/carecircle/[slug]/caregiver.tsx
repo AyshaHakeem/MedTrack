@@ -14,7 +14,7 @@ export default async function CareGivers() {
   const data = demoCaregiverList
   return (
     <div className=" mx-auto py-10">
-      <p>Caregivers associated with this care circle.</p>
+      <h3 className="mb-4 font-medium">Caregivers associated with this care circle.</h3>
       <DataTable columns={columns} data={data} />
     </div>
   )

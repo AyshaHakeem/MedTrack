@@ -47,8 +47,8 @@ const AddCareCircle = () => {
 
     return (
       <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Create New</Button>
+      <DialogTrigger asChild className="my-6">
+        <Button variant="outline">Create New CareCircle</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -90,13 +90,3 @@ const AddCareCircle = () => {
 }
 
 export default AddCareCircle
-
-
-// <div className="grid gap-4 py-4">
-//           <div className="grid grid-cols-4 items-center gap-4">
-//             <Label htmlFor="name" className="text-right">
-//               Name
-//             </Label>
-//             <Input id="name" value="Pedro Duarte" className="col-span-3" />
-//           </div>
-//         </div>

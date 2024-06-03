@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import DisplayText from "../ui/DisplayText";
+import DisplayText from "@/components/ui/DisplayText";
 import loginSubmission from "@/services/api/login";
 import handleLogin from "@/utils/auth/handleLoginForm";
 import useSWR from "swr";

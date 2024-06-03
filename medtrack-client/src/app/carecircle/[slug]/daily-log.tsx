@@ -9,6 +9,7 @@ export default function DailyLogs() {
   
     return (
       <div className="mx-auto py-10">
+        <h3 className="mb-4 font-medium">Today`s List</h3>
         <DailyLogsTable columns={columns} data={data} />
       </div>
     )

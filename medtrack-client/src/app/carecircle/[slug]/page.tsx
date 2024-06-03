@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CareGivers from "./caregiver"
 import DailyLogs from "./daily-log"
-import DisplayList from "./patients"
+import DisplayList from "./med-log"
 
 const carecircleDetails = () => {
     return(

@@ -18,7 +18,7 @@ interface Medicine{
     }
 }
 
-interface Patient{
+export interface Patient{
     patient_id: string;
     name: string;
     username: string;

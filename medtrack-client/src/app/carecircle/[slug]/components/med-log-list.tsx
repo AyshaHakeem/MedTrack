@@ -3,12 +3,12 @@ import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
 import { iMedLogs } from "@/types/MedLogTypes";
 
-// Assuming ScrollArea, twMerge, and clsx are correctly imported
 interface MedLogsListProps {
-    data: iMedLogs | null;
+  data: iMedLogs | null;
+  onSelection: (patientId: string) => void;
   }
   
-const MedLogsList: React.FC<MedLogsListProps> = ({ data }) => {
+const MedLogsList: React.FC<MedLogsListProps> = ({ data, onSelection }) => {
     if (!data) {
         return <div>No data available</div>;
     }
@@ -23,9 +23,9 @@ const MedLogsList: React.FC<MedLogsListProps> = ({ data }) => {
               className={twMerge(clsx(
                 "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
               ))}
-            //   onClick={() => console.log(item)}
+              onClick={() => onSelection(item.patient_id)}
             >
-              <div className="flex w-full flex-col gap-1">
+              <div className="flex flex-col gap-1">
                 <div className="flex items-center">
                   <div className="flex items-center gap-2">
                     <div className="font-semibold">{item.name}</div>

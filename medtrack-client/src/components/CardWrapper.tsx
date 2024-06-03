@@ -1,5 +1,7 @@
+"use client"
+
 import BackButton from "./BackButton"
-import AuthHeader from "./AuthHeader";
+import AuthHeader from "../app/auth/AuthHeader";
 import { 
     Card, 
     CardHeader, 
