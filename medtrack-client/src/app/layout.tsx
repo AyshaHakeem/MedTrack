@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { NavigationMenuDemo } from "@/components/layout/navbar"
+import { NavMenu } from "@/components/layout/navbar";
 import Provider from "./Provider";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.className}`}>
-      <Provider>
-        <div className="container mx-auto px-4 mt-6">
-        <NavigationMenuDemo />  
-          <div className="max-w-screen-lg mx-auto">
-          {children}
+        <Provider>
+          <div className="container mx-auto px-4 mt-6">
+            <NavMenu />
+            <div className="max-w-screen-lg">{children}</div>
           </div>
-        </div>
         </Provider>
       </body>
     </html>

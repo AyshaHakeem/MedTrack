@@ -24,7 +24,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import ccschema from "@/schema/addCareCircleSchema";
+import ccschema from "@/schema/AddCareCircleSchema";
 
 const AddMedLog = () => {
   const router = useRouter();

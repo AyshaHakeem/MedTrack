@@ -1,6 +1,6 @@
 "use client";
 
-import { z } from "zod";
+import { any, z } from "zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -14,12 +14,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { validationSchema, FormValues } from "@/schema/MedLogSchema";
+import { cn } from "@/lib/utils";
 import { DialogFooter } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
 
 export default function DemoForm() {
-  let num = 0;
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     mode: "onBlur",
@@ -35,7 +35,7 @@ export default function DemoForm() {
       ],
     },
   });
-
+  let num = 0;
   const {
     fields: medicineFields,
     append: appendMedicine,
@@ -44,7 +44,6 @@ export default function DemoForm() {
     name: "medicines",
     control: form.control,
   });
-
   const {
     fields: doseFields,
     append: appendDose,
@@ -53,15 +52,13 @@ export default function DemoForm() {
     name: `medicines.${num}.doses`,
     control: form.control,
   });
-
   const onSubmit = (values: FormValues) => {
     console.log(values);
   };
 
   return (
-    <div className="flex flex-col justify-center">
-      <h2 className="text-2xl font-bold mx-auto">Add Entry</h2>
-      <div className="flex justify-center items-center mt-6">
+    <>
+      <div className="flex justify-center items-center">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <ScrollArea className="h-[70vh]">
@@ -96,7 +93,6 @@ export default function DemoForm() {
                           variant="ghost"
                           className="absolute top-2 right-2"
                           onClick={() => {
-                            num = index;
                             removeMedicine(index);
                           }}
                         >
@@ -151,18 +147,20 @@ export default function DemoForm() {
                       <div className="space-y-4 border-t pt-4">
                         <h2 className="text-sm">Doses</h2>
                         {doseFields.map((dose, doseIndex) => (
-                          <div key={dose.id} className="space-y-2 relative">
-                            {doseIndex > 0 && (
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                className="absolute top-2 right-2"
-                                onClick={() => removeDose(doseIndex)}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            )}
-                            <div className="flex space-between">
+                          <div key={dose.id} className="space-y-2">
+                            <div className="flex space-between relative">
+                              {doseIndex > 0 && (
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  className="absolute top-2 right-2"
+                                  onClick={() => {
+                                    removeDose(doseIndex);
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              )}
                               <FormField
                                 control={form.control}
                                 name={`medicines.${index}.doses.${doseIndex}.time`}
@@ -220,9 +218,10 @@ export default function DemoForm() {
                         <Button
                           type="button"
                           variant="outline"
-                          onClick={() =>
-                            appendDose({ time: "", dose: "", note: "" })
-                          }
+                          onClick={() => {
+                            num = index;
+                            appendDose({ time: "", dose: "", note: "" });
+                          }}
                         >
                           Add Dose
                         </Button>
@@ -252,6 +251,6 @@ export default function DemoForm() {
           </form>
         </Form>
       </div>
-    </div>
+    </>
   );
 }

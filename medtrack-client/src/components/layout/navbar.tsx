@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
@@ -13,8 +13,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import isLoggedIn from "@/utils/auth/userStatus"
+} from "@/components/ui/navigation-menu";
+import isLoggedIn from "@/utils/auth/userStatus";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -52,58 +52,30 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
-]
+];
 
-export function NavigationMenuDemo() {
-    
-    const loggedIn = isLoggedIn()
-
+export function NavMenu() {
+  // TODO:separate menu for guest users
   return (
-    <NavigationMenu>
-    { !loggedIn ? (
-        <NavigationMenuList>
-            <NavigationMenuItem>
-                <Link href="/auth/register" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Register
-                </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-                <Link href="/auth/login" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Login
-                </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
-        </NavigationMenuList>
-     ) : (
-        <NavigationMenuList>
-            <NavigationMenuItem>
-                <Link href="/carecircle" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                CareCircle
-                </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-                <Link href="/today" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Today
-                </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-                <Link href="/auth/logout" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Logout
-                </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
-        </NavigationMenuList>
-     )}
+    <NavigationMenu className="px-4 ml-auto">
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link href="/carecircle" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              CareCircle
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/auth/logout" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Logout
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      </NavigationMenuList>
     </NavigationMenu>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -128,6 +100,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";

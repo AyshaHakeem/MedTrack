@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -26,32 +25,32 @@ import { Label } from "@/components/ui/label";
 import addCareCircle from "@/utils/careCircle/addCareCircleUtil";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import ccschema from "@/schema/AddCareCircleSchema";
+import addCareGiverSchema from "@/schema/AddCareGiverSchema";
 
-const AddCareCircle = () => {
-  const router = useRouter();
-
+const AddCareGiver = () => {
   const form = useForm({
-    resolver: zodResolver(ccschema),
+    resolver: zodResolver(addCareGiverSchema),
     defaultValues: {
       name: "",
+      email: "",
     },
   });
 
-  const onSubmit = (data: z.infer<typeof ccschema>) => {
-    return addCareCircle(data, router);
+  const onSubmit = (data: z.infer<typeof addCareGiverSchema>) => {
+    return "";
+    //TODO:handle submission
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild className="my-6">
-        <Button variant="outline">Create New CareCircle</Button>
+        <Button variant="outline">Invite to Care Team</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Care Circle</DialogTitle>
+          <DialogTitle>Invite to Care Team</DialogTitle>
           <DialogDescription>
-            Create a care circle and add care givers to manage patients
+            Send invite to join this carecircle
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -64,7 +63,22 @@ const AddCareCircle = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input {...field} type="text" placeholder="Round 1" />
+                      <Input {...field} type="text" placeholder="Enter name" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="text" placeholder="Enter Email" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -81,4 +95,4 @@ const AddCareCircle = () => {
   );
 };
 
-export default AddCareCircle;
+export default AddCareGiver;
