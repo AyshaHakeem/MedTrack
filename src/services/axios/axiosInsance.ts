@@ -32,19 +32,19 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error?.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
         const refreshToken = localStorage.getItem("medtrack_refresh_token");
 
-        const response = await axios.post("/auth/renew-access-token", {
+        const response = await axiosInstance.post("auth/renew-access-token", {
           refreshToken,
         });
 
-        // if (response.isSuccess) {
-        localStorage.setItem("medtrack_token", response.data.accessToken);
-        // }
+        if (response.data.isSuccess) {
+          localStorage.setItem("medtrack_token", response.data.accessToken);
+        }
 
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
         return axios(originalRequest);
@@ -58,24 +58,35 @@ axiosInstance.interceptors.response.use(
 );
 
 export const apiEndPoints = {
-  carecircle: {
-    addCareCircle(careCircleId: string) {
-      return `carecircle/${careCircleId}`;
+  auth: {
+    login() {
+      return "auth/signin";
     },
+    register() {
+      return "auth/signup";
+    },
+  },
+  carecircle: {
     getCareCircleList() {
       return "carecircle";
     },
-    getCareCircleDetails(careCircleId: string) {
-      return `carecircle/${careCircleId}`;
+    addCareCircle() {
+      return `carecircle`;
     },
-    addMedicine(careCircleId: string) {
-      return `carecircle/${careCircleId}/medicine`;
+    getActiveMedicine(careCircleId: string) {
+      return `carecircle/${careCircleId}/today`;
     },
     getMedicineList(careCircleId: string) {
       return `carecircle/${careCircleId}/medicine`;
     },
-    getActiveMedicine(careCircleId: string) {
-      return `carecircle/${careCircleId}/medicine/today`;
+    addMedicine(careCircleId: string) {
+      return `carecircle/${careCircleId}/new`;
+    },
+    getCareGiverList(careCircleId: string) {
+      return `carecircle/${careCircleId}/caregiver`;
+    },
+    addCareGiverList(careCircleId: string) {
+      return `carecircle/${careCircleId}/caregiver`;
     },
   },
 };
