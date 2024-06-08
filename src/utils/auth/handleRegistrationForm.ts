@@ -34,7 +34,10 @@ const handleRegistration = async (
     const response = await registerSubmission(data);
     setLoading(false);
     if (response.isSuccess) {
-      setTokens(response.data.accessToken, response.data.refreshToken);
+      setTokens(
+        response.data.tokens.accessToken,
+        response.data.tokens.refreshToken
+      );
       router.push("/carecircle");
     }
   } catch (error: any) {
