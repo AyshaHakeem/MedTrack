@@ -22,7 +22,7 @@ const addMedicine = async (
 ): Promise<any> => {
   try {
     const response = await axiosInstance.post(
-      `/carecircle/${id}/medicine`,
+      apiEndPoints.carecircle.addMedicine(id),
       data
     );
     return response.data;

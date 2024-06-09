@@ -80,7 +80,7 @@ export const apiEndPoints = {
       return `carecircle/${careCircleId}/medicine`;
     },
     addMedicine(careCircleId: string) {
-      return `carecircle/${careCircleId}/new`;
+      return `carecircle/${careCircleId}/medicine`;
     },
     getCareGiverList(careCircleId: string) {
       return `carecircle/${careCircleId}/caregiver`;

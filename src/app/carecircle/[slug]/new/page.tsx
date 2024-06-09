@@ -19,6 +19,7 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
 import DoseFields from "../_components/DoseFields"; // Import the new DoseFields component
+import addMedicineUtil from "@/utils/medicine/addMedicineUtil";
 
 export default function DemoForm() {
   const form = useForm<FormValues>({
@@ -48,7 +49,8 @@ export default function DemoForm() {
   });
 
   const onSubmit = (values: FormValues) => {
-    console.log(values);
+    let careCircleId = ""; // TODO: get id
+    return addMedicineUtil(careCircleId, values);
   };
 
   return (

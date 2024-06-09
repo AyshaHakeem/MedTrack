@@ -21,7 +21,7 @@ export default function RootLayout({
         <Provider>
           <div className="container mx-auto px-4 mt-6">
             <NavMenu />
-            <div className="max-w-screen-lg">{children}</div>
+            <div className="max-w-screen-lg m-auto">{children}</div>
           </div>
         </Provider>
       </body>
