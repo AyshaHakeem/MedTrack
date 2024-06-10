@@ -1,36 +1,41 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Tech
 
-First, run the development server:
+Next.js, TypeScript, Radix UI
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[Backend code](https://github.com/AyshaHakeem/medtrack-server)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Medication tracking system for caregivers to manage patients within care circles. Implemented features to manage multiple care circles and to log and monitor medication schedules, dosages, and patient adherence.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- Create new carecircles
+- Invite care givers
+- Add patients
+- Schedule medicine and dosages
+- Log daily medicine intake
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Care circles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Care circles](./public/Carecircles.png)
 
-## Deploy on Vercel
+### Add care circle
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Care circles](./public/add-carecircle.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Medicine Entries
+
+![Medicine Entries](./public/active%20medicine.png)
+
+### Daily List
+
+![Daily List](./public/today.png)
+
+### Care givers
+
+![Care givers](./public/Care%20Givers.png)
