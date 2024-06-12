@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { useForm, useFieldArray } from "react-hook-form";
+import { useId } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,9 +18,9 @@ import { validationSchema, FormValues } from "@/schema/MedLogSchema";
 import { DialogFooter } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
+import DoseFields from "./DoseFields"; // Import the new DoseFields component
 
 export default function DemoForm() {
-  let num = 0;
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     mode: "onBlur",
@@ -27,6 +28,7 @@ export default function DemoForm() {
       patient_name: "",
       medicines: [
         {
+          // id: "1", // Example of unique ID, you should generate this dynamically
           name: "",
           from_date: "",
           to_date: "",
@@ -45,15 +47,6 @@ export default function DemoForm() {
     control: form.control,
   });
 
-  const {
-    fields: doseFields,
-    append: appendDose,
-    remove: removeDose,
-  } = useFieldArray({
-    name: `medicines.${num}.doses`,
-    control: form.control,
-  });
-
   const onSubmit = (values: FormValues) => {
     console.log(values);
   };
@@ -63,9 +56,13 @@ export default function DemoForm() {
       <h2 className="text-2xl font-bold mx-auto">Add Entry</h2>
       <div className="flex justify-center items-center mt-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <ScrollArea className="h-[70vh]">
-              <div className="space-y-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 md:w-3/4"
+          >
+            <ScrollArea className="h-[70vh] p-2">
+              <div className="space-y-4 pr-2">
+                {/* patient name */}
                 <FormField
                   control={form.control}
                   name="patient_name"
@@ -83,44 +80,40 @@ export default function DemoForm() {
                     </FormItem>
                   )}
                 />
-
-                {medicineFields.map((medicine, index) => {
-                  return (
-                    <div
-                      key={medicine.id}
-                      className="space-y-4 border p-4 rounded-md relative"
-                    >
-                      {index > 0 && (
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          className="absolute top-2 right-2"
-                          onClick={() => {
-                            num = index;
-                            removeMedicine(index);
-                          }}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                {medicineFields.map((medicine, index) => (
+                  <div
+                    key={medicine.id}
+                    className="space-y-4 border p-4 rounded-md relative"
+                  >
+                    {index > 0 && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="absolute top-2 right-2"
+                        onClick={() => removeMedicine(index)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                    <FormField
+                      control={form.control}
+                      name={`medicines.${index}.name`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Medicine Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="text"
+                              placeholder="Medicine Name"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
                       )}
-                      <FormField
-                        control={form.control}
-                        name={`medicines.${index}.name`}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Medicine Name</FormLabel>
-                            <FormControl>
-                              <Input
-                                {...field}
-                                type="text"
-                                placeholder="Medicine Name"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <div className="flex space-between">
+                    />
+                    <div className="md:flex space-between">
+                      <div className="md:mr-4">
                         <FormField
                           control={form.control}
                           name={`medicines.${index}.from_date`}
@@ -134,6 +127,8 @@ export default function DemoForm() {
                             </FormItem>
                           )}
                         />
+                      </div>
+                      <div>
                         <FormField
                           control={form.control}
                           name={`medicines.${index}.to_date`}
@@ -148,97 +143,29 @@ export default function DemoForm() {
                           )}
                         />
                       </div>
-                      <div className="space-y-4 border-t pt-4">
-                        <h2 className="text-sm">Doses</h2>
-                        {doseFields.map((dose, doseIndex) => (
-                          <div key={dose.id} className="space-y-2 relative">
-                            {doseIndex > 0 && (
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                className="absolute top-2 right-2"
-                                onClick={() => removeDose(doseIndex)}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            )}
-                            <div className="flex space-between">
-                              <FormField
-                                control={form.control}
-                                name={`medicines.${index}.doses.${doseIndex}.time`}
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Time</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        {...field}
-                                        type="time"
-                                        placeholder="Time"
-                                      />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              <FormField
-                                control={form.control}
-                                name={`medicines.${index}.doses.${doseIndex}.dose`}
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Dose</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        {...field}
-                                        type="text"
-                                        placeholder="Dose"
-                                      />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              <FormField
-                                control={form.control}
-                                name={`medicines.${index}.doses.${doseIndex}.note`}
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Note</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        {...field}
-                                        type="text"
-                                        placeholder="Note"
-                                      />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={() =>
-                            appendDose({ time: "", dose: "", note: "" })
-                          }
-                        >
-                          Add Dose
-                        </Button>
-                      </div>
                     </div>
-                  );
-                })}
+                    <DoseFields control={form.control} medicineIndex={index} />
+                  </div>
+                ))}
+
+                {/* Add medicine button */}
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() =>
                     appendMedicine({
+                      // id: `${useID}`,
                       name: "",
                       from_date: "",
                       to_date: "",
-                      doses: [{ time: "", dose: "", note: "" }],
+                      doses: [
+                        {
+                          // id: `${new Date().getTime()}-dose`,
+                          time: "",
+                          dose: "",
+                          note: "",
+                        },
+                      ],
                     })
                   }
                 >

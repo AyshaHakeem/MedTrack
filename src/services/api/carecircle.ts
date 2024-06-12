@@ -31,12 +31,12 @@ const demoCarecircleList = [
   {
     id: "25",
     name: "Wellness Crew",
-    status: "pending",
+    status: "complete",
   },
   {
     id: "26",
     name: "East Wing",
-    status: "pending",
+    status: "complete",
   },
 ];
 

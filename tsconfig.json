@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/api/auth/signIn/page.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/types/app/api/auth/signIn/page.tsx",
+    ".next/types/app/carecircle/[slug]/new/page.tsx"
+  ],
   "exclude": ["node_modules"]
 }

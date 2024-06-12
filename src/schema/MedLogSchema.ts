@@ -17,11 +17,9 @@ export const validationSchema = z.object({
               dose: z
                 .string()
                 .min(1, { message: "Dose description is required" }),
-              note: z
-                .string()
-                .max(100, {
-                  message: "Note can't be more than 100 characters",
-                }),
+              note: z.string().max(100, {
+                message: "Note can't be more than 100 characters",
+              }),
             })
           )
           .nonempty({ message: "At least one dose is required" }),
