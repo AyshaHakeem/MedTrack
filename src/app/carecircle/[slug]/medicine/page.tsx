@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/resizable";
 import { Button } from "@/components/ui/button";
 import { Patient } from "@/types/MedLogTypes";
+import CareCircleNav from "../components/nav";
 
 export default function DisplayList() {
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
@@ -23,21 +24,24 @@ export default function DisplayList() {
   };
 
   return (
-    <div>
-      <AddMedLog />
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel>
-          <MedLogsList
-            data={demoMedicineLogs}
-            onSelection={handleSelectPatient}
-          />
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel minSize={55}>
-          <MedLogDisplay patient={selectedPatient} />
-        </ResizablePanel>
-      </ResizablePanelGroup>
-    </div>
+    <>
+      <CareCircleNav />
+      <div>
+        <AddMedLog />
+        <ResizablePanelGroup direction="horizontal">
+          <ResizablePanel>
+            <MedLogsList
+              data={demoMedicineLogs}
+              onSelection={handleSelectPatient}
+            />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel minSize={55}>
+            <MedLogDisplay patient={selectedPatient} />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
+    </>
   );
   // return
 }

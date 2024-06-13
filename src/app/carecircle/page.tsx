@@ -14,10 +14,10 @@ async function getData(): Promise<CareCircleRow[]> {
   ];
 }
 
-export default function DemoPage() {
+const DemoPage = () => {
   const data = demoCarecircleList;
   const router = useRouter();
-  let handleClick = (id: string) => router.push(`/${id}`);
+  let handleClick = (id: string) => router.push(`/${id}/today`);
 
   return (
     <div className="container mx-auto">
@@ -26,4 +26,6 @@ export default function DemoPage() {
       <DataTable columns={columns} data={data} handleRowClick={handleClick} />
     </div>
   );
-}
+};
+
+export default DemoPage;
