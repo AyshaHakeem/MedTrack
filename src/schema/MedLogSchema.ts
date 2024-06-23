@@ -1,15 +1,16 @@
 import { z } from "zod";
 
 export const validationSchema = z.object({
-  patient_name: z.string().min(1, {
+  patientName: z.string().min(1, {
     message: "Patient name is required",
   }),
   medicines: z
     .array(
       z.object({
         name: z.string().min(1, { message: "Medicine Name is required" }),
-        from_date: z.string().min(1, { message: "From Date is required" }),
-        to_date: z.string().min(1, { message: "To Date is required" }),
+        note: z.string().min(1, { message: "Add a short note" }),
+        fromDate: z.string().min(1, { message: "From Date is required" }),
+        toDate: z.string().min(1, { message: "To Date is required" }),
         doses: z
           .array(
             z.object({

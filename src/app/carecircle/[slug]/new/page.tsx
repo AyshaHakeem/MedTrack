@@ -26,13 +26,14 @@ export default function DemoForm() {
     resolver: zodResolver(validationSchema),
     mode: "onBlur",
     defaultValues: {
-      patient_name: "",
+      patientName: "",
       medicines: [
         {
           // id: "1", // Example of unique ID, you should generate this dynamically
           name: "",
-          from_date: "",
-          to_date: "",
+          note: "",
+          fromDate: "",
+          toDate: "",
           doses: [{ time: "", dose: "", note: "" }],
         },
       ],
@@ -67,7 +68,7 @@ export default function DemoForm() {
                 {/* patient name */}
                 <FormField
                   control={form.control}
-                  name="patient_name"
+                  name="patientName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Patient Name</FormLabel>
@@ -114,11 +115,28 @@ export default function DemoForm() {
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={form.control}
+                      name={`medicines.${index}.note`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Note</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="text"
+                              placeholder="Medicine Note"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                     <div className="md:flex space-between">
                       <div className="md:mr-4">
                         <FormField
                           control={form.control}
-                          name={`medicines.${index}.from_date`}
+                          name={`medicines.${index}.fromDate`}
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>From Date</FormLabel>
@@ -133,7 +151,7 @@ export default function DemoForm() {
                       <div>
                         <FormField
                           control={form.control}
-                          name={`medicines.${index}.to_date`}
+                          name={`medicines.${index}.toDate`}
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>To Date</FormLabel>
@@ -158,8 +176,9 @@ export default function DemoForm() {
                     appendMedicine({
                       // id: `${useID}`,
                       name: "",
-                      from_date: "",
-                      to_date: "",
+                      note: "",
+                      fromDate: "",
+                      toDate: "",
                       doses: [
                         {
                           // id: `${new Date().getTime()}-dose`,

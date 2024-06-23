@@ -9,8 +9,8 @@ interface Dose {
 interface Medicine {
   medicine_id: string;
   name: string;
-  from_date: string;
-  to_date: string;
+  fromDate: string;
+  toDate: string;
   note: string;
   doses: {
     ids: ids;
@@ -37,11 +37,12 @@ export interface iMedLogs {
 }
 
 export interface iAddMedicineForm {
-  patient_name: string;
+  patientName: string;
   medicines: {
     name: string;
-    from_date: string;
-    to_date: string;
+    note: string;
+    fromDate: string;
+    toDate: string;
     doses: {
       time: string;
       dose: string;

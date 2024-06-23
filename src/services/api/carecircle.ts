@@ -154,8 +154,8 @@ const demoMedicineLogs: iMedLogs = {
             m_001: {
               medicine_id: "m_001",
               name: "Aspirin",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered daily with breakfast.",
               doses: {
                 ids: ["d_001", "d_002"],
@@ -176,8 +176,8 @@ const demoMedicineLogs: iMedLogs = {
             m_002: {
               medicine_id: "m_002",
               name: "Vitamin D",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered daily.",
               doses: {
                 ids: ["d_003", "d_004"],
@@ -208,8 +208,8 @@ const demoMedicineLogs: iMedLogs = {
             m_003: {
               medicine_id: "m_003",
               name: "Metformin",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered with meals.",
               doses: {
                 ids: ["d_005", "d_006"],
@@ -230,8 +230,8 @@ const demoMedicineLogs: iMedLogs = {
             m_004: {
               medicine_id: "m_004",
               name: "Ibuprofen",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered as needed for pain.",
               doses: {
                 ids: ["d_007", "d_008"],
@@ -262,8 +262,8 @@ const demoMedicineLogs: iMedLogs = {
             m_005: {
               medicine_id: "m_005",
               name: "Lisinopril",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered once daily.",
               doses: {
                 ids: ["d_009", "d_010"],
@@ -284,8 +284,8 @@ const demoMedicineLogs: iMedLogs = {
             m_006: {
               medicine_id: "m_006",
               name: "Omeprazole",
-              from_date: "2024-05-01",
-              to_date: "2024-06-01",
+              fromDate: "2024-05-01",
+              toDate: "2024-06-01",
               note: "Administered before meals.",
               doses: {
                 ids: ["d_011", "d_012"],
