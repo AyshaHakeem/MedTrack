@@ -27,30 +27,45 @@ export default function DemoForm() {
     mode: "onBlur",
     defaultValues: {
       patientName: "",
-      medicines: [
-        {
-          // id: "1", // Example of unique ID, you should generate this dynamically
-          name: "",
-          note: "",
-          fromDate: "",
-          toDate: "",
-          doses: [{ time: "", dose: "", note: "" }],
-        },
-      ],
+      medicineName: "",
+      fromDate: "",
+      toDate: "",
+      note: "",
+      doses: [{ time: "", dose: "", note: "" }],
+      // medicines: [
+      //   {
+      //     // id: "1", // Example of unique ID, you should generate this dynamically
+      //     name: "",
+      //     note: "",
+      //     fromDate: "",
+      //     toDate: "",
+      //     doses: [{ time: "", dose: "", note: "" }],
+      //   },
+      // ],
     },
   });
 
+  // const {
+  //   fields: medicineFields,
+  //   append: appendMedicine,
+  //   remove: removeMedicine,
+  // } = useFieldArray({
+  //   name: "medicines",
+  //   control: form.control,
+  // });
+
   const {
-    fields: medicineFields,
-    append: appendMedicine,
-    remove: removeMedicine,
+    fields: doseFields,
+    append: appendDose,
+    remove: removeDose,
   } = useFieldArray({
-    name: "medicines",
+    name: "doses",
     control: form.control,
   });
 
   const onSubmit = (values: FormValues) => {
     let careCircleId = ""; // TODO: get id
+    console.log(values);
     return addMedicineUtil(careCircleId, values);
   };
 
@@ -83,9 +98,82 @@ export default function DemoForm() {
                     </FormItem>
                   )}
                 />
-                {medicineFields.map((medicine, index) => (
+                {/* medicine name */}
+                <FormField
+                  control={form.control}
+                  name="medicineName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Medicine Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          placeholder="Medicine Name"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* dates */}
+                <div className="md:flex">
+                  <div className="md:mr-2 w-1/2">
+                    <FormField
+                      control={form.control}
+                      name="fromDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Start Date</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="date"
+                              placeholder="From Date"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="md:mr-2 w-1/2">
+                    <FormField
+                      control={form.control}
+                      name="toDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>End Date</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="date"
+                              placeholder="To Date"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+                {/* note */}
+                <FormField
+                  control={form.control}
+                  name="note"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Note</FormLabel>
+                      <FormControl>
+                        <Input {...field} type="text" placeholder="Note" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {doseFields.map((dose, index) => (
                   <div
-                    key={medicine.id}
+                    key={dose.id}
                     className="space-y-4 border p-4 rounded-md relative"
                   >
                     {index > 0 && (
@@ -93,70 +181,60 @@ export default function DemoForm() {
                         type="button"
                         variant="ghost"
                         className="absolute top-2 right-2"
-                        onClick={() => removeMedicine(index)}
+                        onClick={() => removeDose(index)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     )}
-                    <FormField
-                      control={form.control}
-                      name={`medicines.${index}.name`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Medicine Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              type="text"
-                              placeholder="Medicine Name"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`medicines.${index}.note`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Note</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              type="text"
-                              placeholder="Medicine Note"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <div className="md:flex space-between">
-                      <div className="md:mr-4">
+                    <div className="md:flex">
+                      <div className="md:mr-2 w-1/3">
                         <FormField
                           control={form.control}
-                          name={`medicines.${index}.fromDate`}
+                          name={`doses.${index}.dose`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>From Date</FormLabel>
+                              <FormLabel>Dose</FormLabel>
                               <FormControl>
-                                <Input {...field} type="date" />
+                                <Input
+                                  {...field}
+                                  type="text"
+                                  placeholder="Prescribed Dose"
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
                         />
                       </div>
-                      <div>
+
+                      <div className="md:mr-2 w-1/3">
                         <FormField
                           control={form.control}
-                          name={`medicines.${index}.toDate`}
+                          name={`doses.${index}.time`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>To Date</FormLabel>
+                              <FormLabel>Dose Time</FormLabel>
                               <FormControl>
-                                <Input {...field} type="date" />
+                                <Input
+                                  {...field}
+                                  type="time"
+                                  placeholder="Time"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="md:mr- w-1/3">
+                        <FormField
+                          control={form.control}
+                          name={`doses.${index}.note`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Note</FormLabel>
+                              <FormControl>
+                                <Input {...field} type="text" />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -164,33 +242,23 @@ export default function DemoForm() {
                         />
                       </div>
                     </div>
-                    <DoseFields control={form.control} medicineIndex={index} />
                   </div>
                 ))}
 
-                {/* Add medicine button */}
+                {/* Add dose button */}
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() =>
-                    appendMedicine({
+                    appendDose({
                       // id: `${useID}`,
-                      name: "",
+                      dose: "",
+                      time: "",
                       note: "",
-                      fromDate: "",
-                      toDate: "",
-                      doses: [
-                        {
-                          // id: `${new Date().getTime()}-dose`,
-                          time: "",
-                          dose: "",
-                          note: "",
-                        },
-                      ],
                     })
                   }
                 >
-                  Add Medicine
+                  Add Dose
                 </Button>
               </div>
             </ScrollArea>
