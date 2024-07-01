@@ -31,12 +31,12 @@ const AddCareGiver = () => {
   const form = useForm({
     resolver: zodResolver(addCareGiverSchema),
     defaultValues: {
-      name: "",
       email: "",
     },
   });
 
   const onSubmit = (data: z.infer<typeof addCareGiverSchema>) => {
+    console.log(data);
     return "";
     //TODO:handle submission
   };
@@ -55,21 +55,6 @@ const AddCareGiver = () => {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} type="text" placeholder="Enter name" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
             <div className="space-y-4">
               <FormField
                 control={form.control}

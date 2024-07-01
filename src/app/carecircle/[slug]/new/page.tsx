@@ -18,7 +18,7 @@ import { validationSchema, FormValues } from "@/schema/MedLogSchema";
 import { DialogFooter } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
-import DoseFields from "./DoseFields"; // Import the new DoseFields component
+import DoseFields from "../_components/DoseFields"; // Import the new DoseFields component
 
 export default function DemoForm() {
   const form = useForm<FormValues>({

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import MedLogsList from "./components/med-log-list";
-import MedLogDisplay from "./components/med-log-display";
-import AddMedLog from "./components/med-log-button";
+import MedLogsList from "../_components/med-log-list";
+import MedLogDisplay from "../_components/med-log-display";
+import AddMedLog from "../_components/med-log-button";
 import { demoMedicineLogs } from "@/services/api/carecircle";
 import {
   ResizableHandle,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable";
 import { Button } from "@/components/ui/button";
 import { Patient } from "@/types/MedLogTypes";
-import CareCircleNav from "../components/nav";
+import CareCircleNav from "../_components/nav";
 
 export default function DisplayList() {
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);

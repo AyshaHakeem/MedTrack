@@ -1,8 +1,8 @@
 import { CareGiver, columns } from "@/types/CareGiverTypes";
 import DataTable from "@/components/DataTable";
 import { demoCaregiverList } from "@/services/api/carecircle";
-import AddCareGiver from "../components/add-care-giver-dialog";
-import CareCircleNav from "../components/nav";
+import AddCareGiver from "../_components/add-care-giver-dialog";
+import CareCircleNav from "../_components/nav";
 
 async function getData(): Promise<CareGiver[]> {
   // TODO: Fetch data from api

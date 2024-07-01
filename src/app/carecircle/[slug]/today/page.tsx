@@ -1,7 +1,7 @@
 import DailyLogsTable from "@/components/DailyLogsTable";
 import { DailyLog, columns } from "@/types/DailyLogTypes";
 import { demoDailyLogs } from "@/services/api/carecircle";
-import CareCircleNav from "../components/nav";
+import CareCircleNav from "../_components/nav";
 
 const DailyLogs = () => {
   //TODO:fetch data

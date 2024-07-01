@@ -1,25 +1,25 @@
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table";
 export interface iAddCareCircleForm {
-    name: string;
-  };
+  name: string;
+}
 
 export type CareCircleRow = {
-  id: string
-  name: string
-  status: "pending" | "processing" | "success" | "failed"
+  id: string;
+  name: string;
+  status: "pending" | "processing" | "success" | "failed";
 };
 
 export const columns: ColumnDef<CareCircleRow>[] = [
   {
     accessorKey: "id",
-    header: "Id"
+    header: "Id",
   },
   {
     accessorKey: "name",
-    header: "Name"
+    header: "Name",
   },
   {
     accessorKey: "status",
-    header: "Status"
-  }
-]
+    header: "Status",
+  },
+];

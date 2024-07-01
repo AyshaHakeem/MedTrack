@@ -1,5 +1,6 @@
 import axiosInstance from "../axiosInsance";
 import { iAddCareCircleForm } from "@/types/CareCircleTypes";
+import { iAddMedicineForm } from "@/types/MedLogTypes";
 import { iMedLogs } from "@/types/MedLogTypes";
 
 const addCareCircle = async (data: iAddCareCircleForm): Promise<any> => {
@@ -10,6 +11,23 @@ const addCareCircle = async (data: iAddCareCircleForm): Promise<any> => {
     throw error;
   }
 };
+
+const addMedicine = async (
+  id: string,
+  data: iAddMedicineForm
+): Promise<any> => {
+  try {
+    const response = await axiosInstance.post(
+      `/carecircle/${id}/medicine`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const inviteCaregiver = async(data: )
 
 // demo data
 const demoCarecircleList = [
@@ -292,6 +310,7 @@ const demoMedicineLogs: iMedLogs = {
 
 export {
   addCareCircle,
+  addMedicine,
   demoCarecircleList,
   demoCaregiverList,
   demoDailyLogs,
