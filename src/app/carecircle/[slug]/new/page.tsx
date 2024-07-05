@@ -1,8 +1,6 @@
 "use client";
 
-import { z } from "zod";
 import { useForm, useFieldArray } from "react-hook-form";
-import { useId } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +16,8 @@ import { validationSchema, FormValues } from "@/schema/MedLogSchema";
 import { DialogFooter } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
-import DoseFields from "../_components/DoseFields"; // Import the new DoseFields component
+import { useParams } from "next/navigation";
+
 import addMedicineUtil from "@/utils/medicine/addMedicineUtil";
 
 export default function DemoForm() {
@@ -32,27 +31,8 @@ export default function DemoForm() {
       toDate: "",
       note: "",
       doses: [{ time: "", dose: "", note: "" }],
-      // medicines: [
-      //   {
-      //     // id: "1", // Example of unique ID, you should generate this dynamically
-      //     name: "",
-      //     note: "",
-      //     fromDate: "",
-      //     toDate: "",
-      //     doses: [{ time: "", dose: "", note: "" }],
-      //   },
-      // ],
     },
   });
-
-  // const {
-  //   fields: medicineFields,
-  //   append: appendMedicine,
-  //   remove: removeMedicine,
-  // } = useFieldArray({
-  //   name: "medicines",
-  //   control: form.control,
-  // });
 
   const {
     fields: doseFields,
@@ -62,11 +42,10 @@ export default function DemoForm() {
     name: "doses",
     control: form.control,
   });
-
+  let careCircleId: { slug: string } = useParams();
   const onSubmit = (values: FormValues) => {
-    let careCircleId = ""; // TODO: get id
-    console.log(values);
-    return addMedicineUtil(careCircleId, values);
+    console.log("form values", values);
+    return addMedicineUtil(careCircleId.slug, values);
   };
 
   return (
