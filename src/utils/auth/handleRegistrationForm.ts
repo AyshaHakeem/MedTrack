@@ -39,6 +39,7 @@ const handleRegistration = async (
         response.data.tokens.refreshToken
       );
       router.push("/carecircle");
+      // TODO:display success dialogue
     }
   } catch (error: any) {
     setLoading(false);

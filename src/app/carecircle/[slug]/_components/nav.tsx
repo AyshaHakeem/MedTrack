@@ -16,7 +16,6 @@ const CareCircleNav = () => {
   const router = useRouter();
 
   const handleTabChange = (value: string) => {
-    console.log(value);
     router.replace(`/carecircle/${slug}/${value}`);
   };
 

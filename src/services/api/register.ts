@@ -5,10 +5,10 @@ import { iRegisterFormData } from "@/types/AuthTypes";
 const registerSubmission = async (data: iRegisterFormData): Promise<any> => {
   const { email, password, firstName, lastName } = data;
   const payload = {
-    email,
-    password,
     firstName,
     lastName,
+    email,
+    password,
   };
   try {
     const response = await axiosInstance.post(

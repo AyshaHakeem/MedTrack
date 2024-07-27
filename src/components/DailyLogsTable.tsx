@@ -86,7 +86,7 @@ export default function DailyLogsTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() => console.log("ro click")}
+                  onClick={() => console.log("row click")}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

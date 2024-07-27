@@ -44,7 +44,6 @@ export default function DemoForm() {
   });
   let careCircleId: { slug: string } = useParams();
   const onSubmit = (values: FormValues) => {
-    console.log("form values", values);
     return addMedicineUtil(careCircleId.slug, values);
   };
 

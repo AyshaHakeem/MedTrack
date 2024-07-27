@@ -76,6 +76,9 @@ export const apiEndPoints = {
     getActiveMedicine(careCircleId: string) {
       return `carecircle/${careCircleId}/today`;
     },
+    logMedicineDose(careCircleId: string) {
+      return `carecircle/${careCircleId}/today`;
+    },
     getMedicineList(careCircleId: string) {
       return `carecircle/${careCircleId}/medicine`;
     },
@@ -87,6 +90,14 @@ export const apiEndPoints = {
     },
     addCareGiverList(careCircleId: string) {
       return `carecircle/${careCircleId}/caregiver`;
+    },
+    inviteCareGiver(careCircleId: string) {
+      //TODO:implement service
+      return `carecircle/${careCircleId}/invite`;
+    },
+    viewInvites(careCircleId: string) {
+      //TODO:implement service
+      return `carecircle/${careCircleId}/invite`;
     },
   },
 };
