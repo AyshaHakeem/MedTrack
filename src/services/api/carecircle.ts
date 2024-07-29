@@ -1,3 +1,4 @@
+"use client";
 import axiosInstance from "../axios/axiosInsance";
 import { apiEndPoints } from "../axios/axiosInsance";
 import { iAddCareCircleForm } from "@/types/CareCircleTypes";
@@ -27,7 +28,24 @@ const addMedicine = async (
     );
     return response.data;
   } catch (error) {
-    throw error;
+    console.error(error);
+  }
+};
+
+const inviteCareGiver = async (
+  carecircleId: string,
+  data: { email: string }
+): Promise<any> => {
+  try {
+    const response = await axiosInstance.post(
+      apiEndPoints.carecircle.inviteCareGiver(
+        "de3c4ef4-f025-4ca6-9e96-2004fa6f6b63"
+      ),
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -313,6 +331,7 @@ const demoMedicineLogs: iMedLogs = {
 export {
   addCareCircle,
   addMedicine,
+  inviteCareGiver,
   demoCarecircleList,
   demoCaregiverList,
   demoDailyLogs,

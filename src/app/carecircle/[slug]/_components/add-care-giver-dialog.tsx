@@ -26,6 +26,9 @@ import addCareCircle from "@/utils/careCircle/addCareCircleUtil";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import addCareGiverSchema from "@/schema/AddCareGiverSchema";
+import { useState } from "react";
+import { inviteCareGiver } from "@/services/api/carecircle";
+import { useParams } from "next/navigation";
 
 const AddCareGiver = () => {
   const form = useForm({
@@ -34,15 +37,20 @@ const AddCareGiver = () => {
       email: "",
     },
   });
-
-  const onSubmit = (data: z.infer<typeof addCareGiverSchema>) => {
-    console.log(data);
-    return "";
-    //TODO:handle submission
+  const [open, setOpen] = useState(false);
+  const carecircleId: { slug: string } = useParams();
+  const onSubmit = async (data: z.infer<typeof addCareGiverSchema>) => {
+    const response = await inviteCareGiver(carecircleId.slug, data);
+    if (response && response.isSuccess) {
+      setOpen(false);
+      alert(`Invitation sent to ${data.email}`);
+    } else {
+      alert(`Couldn't send the invite. Please try again`);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="my-6">
         <Button variant="outline">Invite to Care Team</Button>
       </DialogTrigger>

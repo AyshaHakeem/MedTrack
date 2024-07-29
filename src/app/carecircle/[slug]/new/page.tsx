@@ -42,7 +42,7 @@ export default function DemoForm() {
     name: "doses",
     control: form.control,
   });
-  let careCircleId: { slug: string } = useParams();
+  const careCircleId: { slug: string } = useParams();
   const onSubmit = (values: FormValues) => {
     return addMedicineUtil(careCircleId.slug, values);
   };
