@@ -27,7 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import addCareGiverSchema from "@/schema/AddCareGiverSchema";
 import { useState } from "react";
-import { inviteCareGiver } from "@/services/api/carecircle";
+import { inviteCareGiver } from "@/services/api/careGiver";
 import { useParams } from "next/navigation";
 
 const AddCareGiver = () => {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import MedLogsList from "../_components/med-log-list";
 import MedLogDisplay from "../_components/med-log-display";
 import AddMedLog from "../_components/med-log-button";
-import { demoMedicineLogs } from "@/services/api/carecircle";
+import { demoMedicineLogs } from "@/services/api/medicine";
 import {
   ResizableHandle,
   ResizablePanel,

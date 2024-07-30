@@ -2,21 +2,19 @@
 
 import { CareCircleRow, columns } from "@/types/CareCircleTypes";
 import DataTable from "@/components/DataTable";
-import { demoCarecircleList } from "@/services/api/carecircle";
+import {
+  demoCarecircleList,
+  getCareCircleList,
+} from "@/services/api/carecircle";
 import AddCareCircle from "./_components/add-care-circle-dialog";
 import { useRouter } from "next/navigation";
 import PageTitle from "@/components/ui/PageTitle";
-
-async function getData(): Promise<CareCircleRow[]> {
-  // Fetch data via API
-  return [
-    // demoCarecircleList
-  ];
-}
+import { useEffect } from "react";
 
 const DemoPage = () => {
-  const data = demoCarecircleList;
+  //code to display api data
   const router = useRouter();
+  const data = demoCarecircleList;
   let handleClick = (id: string) => router.push(`/${id}/today`);
 
   return (

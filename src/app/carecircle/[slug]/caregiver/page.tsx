@@ -1,6 +1,6 @@
 import { CareGiver, columns } from "@/types/CareGiverTypes";
 import DataTable from "@/components/DataTable";
-import { demoCaregiverList } from "@/services/api/carecircle";
+import { demoCaregiverList } from "@/services/api/careGiver";
 import AddCareGiver from "../_components/add-care-giver-dialog";
 import CareCircleNav from "../_components/nav";
 
