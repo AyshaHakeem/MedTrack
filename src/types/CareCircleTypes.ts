@@ -11,8 +11,8 @@ export type CareCircleRow = {
 
 export const columns: ColumnDef<CareCircleRow>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
+    accessorKey: "index",
+    header: "index",
   },
   {
     accessorKey: "name",

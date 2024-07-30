@@ -6,9 +6,7 @@ const inviteCareGiver = async (
 ): Promise<any> => {
   try {
     const response = await axiosInstance.post(
-      apiEndPoints.carecircle.inviteCareGiver(
-        "de3c4ef4-f025-4ca6-9e96-2004fa6f6b63"
-      ),
+      apiEndPoints.carecircle.inviteCareGiver(carecircleId),
       data
     );
     return response.data;

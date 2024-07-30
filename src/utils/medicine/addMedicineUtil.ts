@@ -1,4 +1,4 @@
-import { addMedicine } from "@/services/api/carecircle";
+import { addMedicine } from "@/services/api/medicine";
 
 export default async function addMedicineUtil(id: string, data: any) {
   try {

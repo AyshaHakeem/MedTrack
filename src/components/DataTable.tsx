@@ -58,11 +58,11 @@ export default function DataTable<TData, TValue>({
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
-                key={row.id}
+                key={row.original.id}
                 data-state={row.getIsSelected() && "selected"}
                 onClick={() => {
                   handleRowClick
-                    ? handleRowClick(`carecircle/${row.getValue("id")}`)
+                    ? handleRowClick(`carecircle/${row.original.id}`)
                     : undefined;
                 }}
               >

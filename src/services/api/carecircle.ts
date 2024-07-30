@@ -22,11 +22,32 @@ const getCareCircleList = async (): Promise<any> => {
     const response = await axiosInstance.get(
       apiEndPoints.carecircle.getCareCircleList()
     );
-    return response.data;
+    if (response.data.isSuccess) {
+      const items = response.data.data.items;
+      const tableData = createList(items);
+      console.log("table data", tableData);
+      return tableData;
+    }
   } catch (error) {
     console.error(error);
   }
 };
+
+function createList(items: { [id: string]: { id: string; name: string } }) {
+  let index = 1;
+  let carecircleList = [];
+  for (let itemId in items) {
+    carecircleList.push({
+      index,
+      id: items[itemId].id,
+      name: items[itemId].name,
+      status: "pending",
+    });
+    index++;
+  }
+
+  return carecircleList;
+}
 
 // demo data
 const demoCarecircleList = [
